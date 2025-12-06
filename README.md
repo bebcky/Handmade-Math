@@ -1,6 +1,6 @@
 # Handmade Math
 
-A single-file, cross-platform, public domain graphics math library for both C and C++. Supports vectors, matrices, quaternions, and all the utilities you'd expect.
+A single-file, cross-platform, public domain graphics math library for both C and C++. Supports vectors, matrices, rotors (quaternions), and all the utilities you'd expect.
 
 To get started, go download [the latest release](https://github.com/HandmadeMath/HandmadeMath/releases).
 
