@@ -217,27 +217,27 @@ TEST(Initialization, MatrixDiagonal)
     }
 }
 
-TEST(Initialization, Quaternion)
+TEST(Initialization, Rotor)
 {
-    HMM_Quat q = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
 
-    EXPECT_FLOAT_EQ(q.X, 1.0f);
-    EXPECT_FLOAT_EQ(q.Y, 2.0f);
-    EXPECT_FLOAT_EQ(q.Z, 3.0f);
-    EXPECT_FLOAT_EQ(q.W, 4.0f);
+    EXPECT_FLOAT_EQ(r.YZ, 1.0f);
+    EXPECT_FLOAT_EQ(r.XZ, 2.0f);
+    EXPECT_FLOAT_EQ(r.XY, 3.0f);
+    EXPECT_FLOAT_EQ(r.Scalar, 4.0f);
 
-    EXPECT_FLOAT_EQ(q.Elements[0], 1.0f);
-    EXPECT_FLOAT_EQ(q.Elements[1], 2.0f);
-    EXPECT_FLOAT_EQ(q.Elements[2], 3.0f);
-    EXPECT_FLOAT_EQ(q.Elements[3], 4.0f);
+    EXPECT_FLOAT_EQ(r.Elements[0], 1.0f);
+    EXPECT_FLOAT_EQ(r.Elements[1], 2.0f);
+    EXPECT_FLOAT_EQ(r.Elements[2], 3.0f);
+    EXPECT_FLOAT_EQ(r.Elements[3], 4.0f);
 
     HMM_Vec4 v = HMM_V4(1.0f, 2.0f, 3.0f, 4.0f);
-    HMM_Quat qv = HMM_QV4(v);
+    HMM_Rotor rv = HMM_RV4(v);
 
-    EXPECT_FLOAT_EQ(qv.X, 1.0f);
-    EXPECT_FLOAT_EQ(qv.Y, 2.0f);
-    EXPECT_FLOAT_EQ(qv.Z, 3.0f);
-    EXPECT_FLOAT_EQ(qv.W, 4.0f);
+    EXPECT_FLOAT_EQ(rv.YZ, 1.0f);
+    EXPECT_FLOAT_EQ(rv.XZ, 2.0f);
+    EXPECT_FLOAT_EQ(rv.XY, 3.0f);
+    EXPECT_FLOAT_EQ(rv.Scalar, 4.0f);
 }
 
 #ifdef __cplusplus

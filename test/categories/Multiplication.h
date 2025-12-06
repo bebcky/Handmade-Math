@@ -786,83 +786,83 @@ TEST(Multiplication, Mat4Vec4)
 #endif
 }
 
-TEST(Multiplication, QuaternionQuaternion)
+TEST(Multiplication, RotorRotor)
 {
-    HMM_Quat q1 = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
-    HMM_Quat q2 = HMM_Q(5.0f, 6.0f, 7.0f, 8.0f);
+    HMM_Rotor r1 = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r2 = HMM_R(5.0f, 6.0f, 7.0f, 8.0f);
 
     {
-        HMM_Quat result = HMM_MulQ(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, 24.0f);
-        EXPECT_FLOAT_EQ(result.Y, 48.0f);
-        EXPECT_FLOAT_EQ(result.Z, 48.0f);
-        EXPECT_FLOAT_EQ(result.W, -6.0f);
+        HMM_Rotor result = HMM_MulR(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, 24.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 48.0f);
+        EXPECT_FLOAT_EQ(result.XY, 48.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -6.0f);
     }
 #if HANDMADE_MATH__USE_C11_GENERICS || defined(__cplusplus)
     {
-        HMM_Quat result = HMM_Mul(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, 24.0f);
-        EXPECT_FLOAT_EQ(result.Y, 48.0f);
-        EXPECT_FLOAT_EQ(result.Z, 48.0f);
-        EXPECT_FLOAT_EQ(result.W, -6.0f);
+        HMM_Rotor result = HMM_Mul(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, 24.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 48.0f);
+        EXPECT_FLOAT_EQ(result.XY, 48.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -6.0f);
     }
 #endif
 #ifdef __cplusplus
     {
-        HMM_Quat result = q1 * q2;
-        EXPECT_FLOAT_EQ(result.X, 24.0f);
-        EXPECT_FLOAT_EQ(result.Y, 48.0f);
-        EXPECT_FLOAT_EQ(result.Z, 48.0f);
-        EXPECT_FLOAT_EQ(result.W, -6.0f);
+        HMM_Rotor result = r1 * r2;
+        EXPECT_FLOAT_EQ(result.YZ, 24.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 48.0f);
+        EXPECT_FLOAT_EQ(result.XY, 48.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -6.0f);
     }
 
     // Like with matrices, we're not implementing the *=
-    // operator for quaternions because quaternion multiplication
+    // operator for rotors because rotor multiplication
     // is not commutative.
 #endif
 }
 
-TEST(Multiplication, QuaternionScalar)
+TEST(Multiplication, RotorScalar)
 {
-    HMM_Quat q = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
     float f = 2.0f;
 
     {
-        HMM_Quat result = HMM_MulQF(q, f);
-        EXPECT_FLOAT_EQ(result.X, 2.0f);
-        EXPECT_FLOAT_EQ(result.Y, 4.0f);
-        EXPECT_FLOAT_EQ(result.Z, 6.0f);
-        EXPECT_FLOAT_EQ(result.W, 8.0f);
+        HMM_Rotor result = HMM_MulRF(r, f);
+        EXPECT_FLOAT_EQ(result.YZ, 2.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 4.0f);
+        EXPECT_FLOAT_EQ(result.XY, 6.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 8.0f);
     }
 #if HANDMADE_MATH__USE_C11_GENERICS || defined(__cplusplus)
     {
-        HMM_Quat result = HMM_Mul(q, f);
-        EXPECT_FLOAT_EQ(result.X, 2.0f);
-        EXPECT_FLOAT_EQ(result.Y, 4.0f);
-        EXPECT_FLOAT_EQ(result.Z, 6.0f);
-        EXPECT_FLOAT_EQ(result.W, 8.0f);
+        HMM_Rotor result = HMM_Mul(r, f);
+        EXPECT_FLOAT_EQ(result.YZ, 2.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 4.0f);
+        EXPECT_FLOAT_EQ(result.XY, 6.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 8.0f);
     }
 #endif
 #ifdef __cplusplus
     {
-        HMM_Quat result = q * f;
-        EXPECT_FLOAT_EQ(result.X, 2.0f);
-        EXPECT_FLOAT_EQ(result.Y, 4.0f);
-        EXPECT_FLOAT_EQ(result.Z, 6.0f);
-        EXPECT_FLOAT_EQ(result.W, 8.0f);
+        HMM_Rotor result = r * f;
+        EXPECT_FLOAT_EQ(result.YZ, 2.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 4.0f);
+        EXPECT_FLOAT_EQ(result.XY, 6.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 8.0f);
     }
     {
-        HMM_Quat result = f * q;
-        EXPECT_FLOAT_EQ(result.X, 2.0f);
-        EXPECT_FLOAT_EQ(result.Y, 4.0f);
-        EXPECT_FLOAT_EQ(result.Z, 6.0f);
-        EXPECT_FLOAT_EQ(result.W, 8.0f);
+        HMM_Rotor result = f * r;
+        EXPECT_FLOAT_EQ(result.YZ, 2.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 4.0f);
+        EXPECT_FLOAT_EQ(result.XY, 6.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 8.0f);
     }
 
-    q *= f;
-    EXPECT_FLOAT_EQ(q.X, 2.0f);
-    EXPECT_FLOAT_EQ(q.Y, 4.0f);
-    EXPECT_FLOAT_EQ(q.Z, 6.0f);
-    EXPECT_FLOAT_EQ(q.W, 8.0f);
+    r *= f;
+    EXPECT_FLOAT_EQ(r.YZ, 2.0f);
+    EXPECT_FLOAT_EQ(r.XZ, 4.0f);
+    EXPECT_FLOAT_EQ(r.XY, 6.0f);
+    EXPECT_FLOAT_EQ(r.Scalar, 8.0f);
 #endif
 }

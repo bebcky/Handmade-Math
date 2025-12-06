@@ -400,40 +400,40 @@ TEST(Division, Mat4Scalar)
 #endif
 }
 
-TEST(Division, QuaternionScalar)
+TEST(Division, RotorScalar)
 {
-    HMM_Quat q = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
     float f = 2.0f;
 
     {
-        HMM_Quat result = HMM_DivQF(q, f);
-        EXPECT_FLOAT_EQ(result.X, 0.5f);
-        EXPECT_FLOAT_EQ(result.Y, 1.0f);
-        EXPECT_FLOAT_EQ(result.Z, 1.5f);
-        EXPECT_FLOAT_EQ(result.W, 2.0f);
+        HMM_Rotor result = HMM_DivRF(r, f);
+        EXPECT_FLOAT_EQ(result.YZ, 0.5f);
+        EXPECT_FLOAT_EQ(result.XZ, 1.0f);
+        EXPECT_FLOAT_EQ(result.XY, 1.5f);
+        EXPECT_FLOAT_EQ(result.Scalar, 2.0f);
     }
 #if HANDMADE_MATH__USE_C11_GENERICS || defined(__cplusplus)
     {
-        HMM_Quat result = HMM_Div(q, f);
-        EXPECT_FLOAT_EQ(result.X, 0.5f);
-        EXPECT_FLOAT_EQ(result.Y, 1.0f);
-        EXPECT_FLOAT_EQ(result.Z, 1.5f);
-        EXPECT_FLOAT_EQ(result.W, 2.0f);
+        HMM_Rotor result = HMM_Div(r, f);
+        EXPECT_FLOAT_EQ(result.YZ, 0.5f);
+        EXPECT_FLOAT_EQ(result.XZ, 1.0f);
+        EXPECT_FLOAT_EQ(result.XY, 1.5f);
+        EXPECT_FLOAT_EQ(result.Scalar, 2.0f);
     }
 #endif
 #ifdef __cplusplus
     {
-        HMM_Quat result = q / f;
-        EXPECT_FLOAT_EQ(result.X, 0.5f);
-        EXPECT_FLOAT_EQ(result.Y, 1.0f);
-        EXPECT_FLOAT_EQ(result.Z, 1.5f);
-        EXPECT_FLOAT_EQ(result.W, 2.0f);
+        HMM_Rotor result = r / f;
+        EXPECT_FLOAT_EQ(result.YZ, 0.5f);
+        EXPECT_FLOAT_EQ(result.XZ, 1.0f);
+        EXPECT_FLOAT_EQ(result.XY, 1.5f);
+        EXPECT_FLOAT_EQ(result.Scalar, 2.0f);
     }
 
-    q /= f;
-    EXPECT_FLOAT_EQ(q.X, 0.5f);
-    EXPECT_FLOAT_EQ(q.Y, 1.0f);
-    EXPECT_FLOAT_EQ(q.Z, 1.5f);
-    EXPECT_FLOAT_EQ(q.W, 2.0f);
+    r /= f;
+    EXPECT_FLOAT_EQ(r.YZ, 0.5f);
+    EXPECT_FLOAT_EQ(r.XZ, 1.0f);
+    EXPECT_FLOAT_EQ(r.XY, 1.5f);
+    EXPECT_FLOAT_EQ(r.Scalar, 2.0f);
 #endif
 }

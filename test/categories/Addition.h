@@ -308,40 +308,40 @@ TEST(Addition, Mat4)
 #endif
 }
 
-TEST(Addition, Quaternion)
+TEST(Addition, Rotor)
 {
-    HMM_Quat q1 = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
-    HMM_Quat q2 = HMM_Q(5.0f, 6.0f, 7.0f, 8.0f);
+    HMM_Rotor r1 = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r2 = HMM_R(5.0f, 6.0f, 7.0f, 8.0f);
 
     {
-        HMM_Quat result = HMM_AddQ(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, 6.0f);
-        EXPECT_FLOAT_EQ(result.Y, 8.0f);
-        EXPECT_FLOAT_EQ(result.Z, 10.0f);
-        EXPECT_FLOAT_EQ(result.W, 12.0f);
+        HMM_Rotor result = HMM_AddR(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, 6.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 8.0f);
+        EXPECT_FLOAT_EQ(result.XY, 10.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 12.0f);
     }
 #if HANDMADE_MATH__USE_C11_GENERICS || defined(__cplusplus)
     {
-        HMM_Quat result = HMM_Add(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, 6.0f);
-        EXPECT_FLOAT_EQ(result.Y, 8.0f);
-        EXPECT_FLOAT_EQ(result.Z, 10.0f);
-        EXPECT_FLOAT_EQ(result.W, 12.0f);
+        HMM_Rotor result = HMM_Add(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, 6.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 8.0f);
+        EXPECT_FLOAT_EQ(result.XY, 10.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 12.0f);
     }
 #endif
 #ifdef __cplusplus
     {
-        HMM_Quat result = q1 + q2;
-        EXPECT_FLOAT_EQ(result.X, 6.0f);
-        EXPECT_FLOAT_EQ(result.Y, 8.0f);
-        EXPECT_FLOAT_EQ(result.Z, 10.0f);
-        EXPECT_FLOAT_EQ(result.W, 12.0f);
+        HMM_Rotor result = r1 + r2;
+        EXPECT_FLOAT_EQ(result.YZ, 6.0f);
+        EXPECT_FLOAT_EQ(result.XZ, 8.0f);
+        EXPECT_FLOAT_EQ(result.XY, 10.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, 12.0f);
     }
 
-    q1 += q2;
-    EXPECT_FLOAT_EQ(q1.X, 6.0f);
-    EXPECT_FLOAT_EQ(q1.Y, 8.0f);
-    EXPECT_FLOAT_EQ(q1.Z, 10.0f);
-    EXPECT_FLOAT_EQ(q1.W, 12.0f);
+    r1 += r2;
+    EXPECT_FLOAT_EQ(r1.YZ, 6.0f);
+    EXPECT_FLOAT_EQ(r1.XZ, 8.0f);
+    EXPECT_FLOAT_EQ(r1.XY, 10.0f);
+    EXPECT_FLOAT_EQ(r1.Scalar, 12.0f);
 #endif
 }

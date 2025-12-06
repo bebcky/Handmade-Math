@@ -289,41 +289,41 @@ TEST(Subtraction, Mat4)
 #endif
 }
 
-TEST(Subtraction, Quaternion)
+TEST(Subtraction, Rotor)
 {
-    HMM_Quat q1 = HMM_Q(1.0f, 2.0f, 3.0f, 4.0f);
-    HMM_Quat q2 = HMM_Q(5.0f, 6.0f, 7.0f, 8.0f);
+    HMM_Rotor r1 = HMM_R(1.0f, 2.0f, 3.0f, 4.0f);
+    HMM_Rotor r2 = HMM_R(5.0f, 6.0f, 7.0f, 8.0f);
 
     {
-        HMM_Quat result = HMM_SubQ(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, -4.0f);
-        EXPECT_FLOAT_EQ(result.Y, -4.0f);
-        EXPECT_FLOAT_EQ(result.Z, -4.0f);
-        EXPECT_FLOAT_EQ(result.W, -4.0f);
+        HMM_Rotor result = HMM_SubR(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XY, -4.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -4.0f);
     }
 #if HANDMADE_MATH__USE_C11_GENERICS || defined(__cplusplus)
     {
-        HMM_Quat result = HMM_Sub(q1, q2);
-        EXPECT_FLOAT_EQ(result.X, -4.0f);
-        EXPECT_FLOAT_EQ(result.Y, -4.0f);
-        EXPECT_FLOAT_EQ(result.Z, -4.0f);
-        EXPECT_FLOAT_EQ(result.W, -4.0f);
+        HMM_Rotor result = HMM_Sub(r1, r2);
+        EXPECT_FLOAT_EQ(result.YZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XY, -4.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -4.0f);
     }
 #endif
 #ifdef __cplusplus
     {
-        HMM_Quat result = q1 - q2;
-        EXPECT_FLOAT_EQ(result.X, -4.0f);
-        EXPECT_FLOAT_EQ(result.Y, -4.0f);
-        EXPECT_FLOAT_EQ(result.Z, -4.0f);
-        EXPECT_FLOAT_EQ(result.W, -4.0f);
+        HMM_Rotor result = r1 - r2;
+        EXPECT_FLOAT_EQ(result.YZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XZ, -4.0f);
+        EXPECT_FLOAT_EQ(result.XY, -4.0f);
+        EXPECT_FLOAT_EQ(result.Scalar, -4.0f);
     }
 
-    q1 -= q2;
-    EXPECT_FLOAT_EQ(q1.X, -4.0f);
-    EXPECT_FLOAT_EQ(q1.Y, -4.0f);
-    EXPECT_FLOAT_EQ(q1.Z, -4.0f);
-    EXPECT_FLOAT_EQ(q1.W, -4.0f);
+    r1 -= r2;
+    EXPECT_FLOAT_EQ(r1.YZ, -4.0f);
+    EXPECT_FLOAT_EQ(r1.XZ, -4.0f);
+    EXPECT_FLOAT_EQ(r1.XY, -4.0f);
+    EXPECT_FLOAT_EQ(r1.Scalar, -4.0f);
 #endif
 }
 
