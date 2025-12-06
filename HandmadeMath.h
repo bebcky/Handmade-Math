@@ -2101,7 +2101,7 @@ static inline HMM_Rotor HMM_R(float YZ, float XZ, float XY, float Scalar)
 #ifdef HANDMADE_MATH__USE_SSE
     Result.SSE = _mm_setr_ps(YZ, XZ, XY, Scalar);
 #elif defined(HANDMADE_MATH__USE_NEON)
-    float32x4_t v = { YZ, XZ, XY, W };
+    float32x4_t v = { YZ, XZ, XY, Scalar };
     Result.NEON = v;
 #else
     Result.YZ = YZ;
